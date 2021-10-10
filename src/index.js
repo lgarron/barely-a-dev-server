@@ -38,26 +38,26 @@ Benefits we've gotten from doing this, so far:
 */
 
 export async function barelyServe(options) {
-  let { debug, dev, esbuildOptions, outDir, port, srcRoot, type } = options;
-  if (!srcRoot) {
-    throw new Error("Must specify `srcRoot`");
+  let { debug, dev, esbuildOptions, outDir, port, entryRoot, type } = options;
+  if (!entryRoot) {
+    throw new Error("Must specify `entryRoot`");
   }
   debug ??= false;
   dev ??= true;
   esbuildOptions ??= {};
   type ??= "site";
   port ??= 1234;
-  outDir ??= join(dev ? "dist/dev" : "dist", srcRoot);
+  outDir ??= join(dev ? "dist/dev" : "dist", entryRoot);
 
-  await restartEsbuild(srcRoot, outDir, dev, esbuildOptions);
+  await restartEsbuild(entryRoot, outDir, dev, esbuildOptions);
   if (dev) {
     new CustomServer({
-      rootPaths: [outDir, srcRoot],
+      rootPaths: [outDir, entryRoot],
       port,
       debug,
     }).start();
   } else if (type === "site") {
     // TODO: filter out `.ts` if they don't work for source maps?
-    await cp(srcRoot, outDir, { recursive: true });
+    await cp(entryRoot, outDir, { recursive: true });
   }
 }

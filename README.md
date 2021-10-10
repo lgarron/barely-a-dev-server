@@ -1,9 +1,9 @@
 # `barely-a-dev-server`
 
-A thin, opinionated wrapper for `esbuild` as a `.ts` web server. Given a `srcRoot` folder, it:
+A thin, opinionated wrapper for `esbuild` as a `.ts` web server. Given a `entryRoot` folder, it:
 
-- finds all `.ts` file in `srcRoot` and uses them as entry files to run `esbuild` in `watch` mode, and
-- serves the built `.js` files together with a fallback to `srcRoot` for static files.
+- finds all `.ts` file in `entryRoot` and uses them as entry files to run `esbuild` in `watch` mode, and
+- serves the built `.js` files together with a fallback to `entryRoot` for static files.
 
 When run with `"dev": false`, it writes these files to an output dir (`dist/` + the source root by default), ready to serve using your favorite static file server.
 
@@ -14,7 +14,7 @@ When run with `"dev": false`, it writes these files to an output dir (`dist/` + 
 import { barelyServe } from "barely-a-dev-server";
 
 barelyServe({
-  srcRoot: "src/sites", // the only required arg
+  entryRoot: "src/sites", // the only required arg
   dev: true,
   port: 3333,
   esbuildOptions: {

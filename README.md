@@ -14,8 +14,8 @@ When run with `"dev": false`, it writes these files to an output dir (`dist/` + 
 import { barelyServe } from "barely-a-dev-server";
 
 barelyServe({
-  srcRoot: "src/sites",
-  dev,
+  srcRoot: "src/sites", // the only required arg
+  dev: true,
   port: 3333,
   esbuildOptions: {
     target: "esnext",

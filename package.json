@@ -11,7 +11,7 @@
   },
   "exports": {
     ".": {
-      "module": "./src/index.js"
+      "import": "./src/index.js"
     }
   }
 }

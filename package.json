@@ -6,6 +6,7 @@
   "keywords": [],
   "author": "Lucas Garron <code@garron.net>",
   "license": "(MIT OR GPL-3.0-or-later)",
+  "repository": "github:lgarron/barely-a-dev-server",
   "dependencies": {
     "esbuild": "^0.13.4"
   },

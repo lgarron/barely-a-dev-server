@@ -1,0 +1,13 @@
+{
+  "name": "barely-a-dev-server",
+  "version": "0.0.1",
+  "type": "module",
+  "description": "",
+  "main": "index.js",
+  "keywords": [],
+  "author": "Lucas Garron <code@garron.net>",
+  "license": "(MIT OR GPL-3.0-or-later)",
+  "dependencies": {
+    "esbuild": "^0.13.4"
+  }
+}

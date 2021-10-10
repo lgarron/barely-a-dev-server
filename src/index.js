@@ -38,17 +38,18 @@ Benefits we've gotten from doing this, so far:
 */
 
 export async function barelyServe(options) {
-  let { debug, dev, outDir, port, srcRoot, type } = options;
+  let { debug, dev, esbuildOptions, outDir, port, srcRoot, type } = options;
   if (!srcRoot) {
     throw new Error("Must specify `srcRoot`");
   }
   debug ??= false;
   dev ??= true;
+  esbuildOptions ??= {};
   type ??= "site";
   port ??= 1234;
   outDir ??= join(dev ? "dist/dev" : "dist", srcRoot);
 
-  await restartEsbuild(srcRoot, outDir, dev);
+  await restartEsbuild(srcRoot, outDir, dev, esbuildOptions);
   if (dev) {
     new CustomServer({
       rootPaths: [outDir, srcRoot],

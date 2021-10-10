@@ -20,12 +20,12 @@ export async function restartEsbuild(
   );
   console.log(`Starting esbuild with ${entryPoints.length} entry points.`);
   return (currentBuildResult = esbuild.build({
-    format: "esm",
     target: "es2020",
     logLevel: "info",
     minify: true, // TODO: `!dev`?
     sourcemap: true,
     ...options,
+    format: "esm",
     entryPoints,
     outdir: outputRootPath,
     bundle: true,

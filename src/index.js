@@ -38,7 +38,7 @@ Benefits we've gotten from doing this, so far:
 */
 
 export async function barelyServe(options) {
-  let { debug, dev, esbuildOptions, outDir, port, entryRoot, type } = options;
+  let { debug, dev, entryRoot, esbuildOptions, outDir, port, type } = options;
   if (!entryRoot) {
     throw new Error("Must specify `entryRoot`");
   }

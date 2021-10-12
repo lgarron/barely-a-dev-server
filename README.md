@@ -14,7 +14,7 @@ When run with `"dev": false`, it writes these files to an output dir (`dist/` + 
 import { barelyServe } from "barely-a-dev-server";
 
 barelyServe({
-  entryRoot: "src/sites", // the only required arg
+  entryRoot: "src", // the only required arg
   dev: true,
   port: 3333,
   esbuildOptions: {
@@ -22,6 +22,8 @@ barelyServe({
   },
 });
 ```
+
+--------
 
 ```html
 <!-- src/index.html -->
@@ -31,7 +33,7 @@ barelyServe({
 (Note that `src` must reference the built `.js` file. You can use `href` to store a reference to the source that e.g. you can click in VSCode.)
 
 ```ts
-// index.ts
+// src/index.ts
 const a: number = 4;
 console.log(a);
 ```

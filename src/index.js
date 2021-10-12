@@ -45,7 +45,6 @@ export async function barelyServe(options) {
   debug ??= false;
   dev ??= true;
   esbuildOptions ??= {};
-  type ??= "site";
   port ??= 1234;
   outDir ??= join(dev ? "dist/dev" : "dist", entryRoot);
 
@@ -56,7 +55,7 @@ export async function barelyServe(options) {
       port,
       debug,
     }).start();
-  } else if (type === "site") {
+  } else {
     // TODO: filter out `.ts` if they don't work for source maps?
     await cp(entryRoot, outDir, { recursive: true });
   }

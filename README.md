@@ -8,7 +8,7 @@ A thin, opinionated wrapper for `esbuild` as a `.ts` web server. Given a `entryR
 
 When run with `"dev": false`, it writes these files to an output dir (`dist/` + the entry root by default), ready to serve using your favorite static file server.
 
-# Usage:
+# Example
 
 ```js
 // script/build.js
@@ -31,17 +31,23 @@ barelyServe({
 <script src="./index.js" href="./index.ts" type="module" defer></script>
 ```
 
-(Note that `src` must reference the built `.js` file. You can use `href` to store a reference to the source that e.g. you can click in VSCode.)
-
 ```ts
 // src/index.ts
 const a: number = 4;
 console.log(a);
 ```
 
-# Limitations
+(Note that `src` must reference the `.js` file, not `.ts`. The example shows a hack: you can use `href` to store a reference to the `.ts` source, which works with e.g. "Follow link" in VSCode.)
 
-- Hardcoded to assume that you are only using ESM.
+# Why `barely-a-dev-server`?
+
+- Works just as well as fancy bundlers, if all your code is TypeScript.
+- No dependencies.
+- Less than 200 lines of source code (unminified).
+
+# Why not `barely-a-dev-server`?
+
+- Hardcoded to assume that you are only using TypeScript for your source and ESM for your output.
 - No CLI.
   - If you don't have a build script, you can do this: `node -e 'import("barely-a-dev-server").then(s => s.barelyServe({entryRoot: "src"}))'`
 - No automatic URL opening, no live refresh.

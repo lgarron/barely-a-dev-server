@@ -39,7 +39,11 @@ const a: number = 4;
 console.log(a);
 ```
 
-# Assumptions
+# Limitations
 
-- You're using only ESM code.
-- You have a build script to invoke this from. (TODO: [CLI](https://github.com/lgarron/barely-a-dev-server/issues/1))
+- Hardcoded to assume that you are only using ESM.
+- No CLI.
+  - If you don't have a build script, you can do this: `node -e 'import("barely-a-dev-server").then(s => s.barelyServe({entryRoot: "src"}))'`
+- No automatic URL opening, no live refresh.
+
+These are mostly because it would make the codebase significantly larger to support them properly.

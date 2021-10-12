@@ -4,6 +4,7 @@ A thin, opinionated wrapper for `esbuild` as a `.ts` web server. Given a `entryR
 
 - finds all `.ts` file in `entryRoot` and uses them as entry files to run `esbuild` in `watch` mode, and
 - serves the built `.js` files together with a fallback to `entryRoot` for static files.
+  - Paths ending in `/` are mapped to `index.html` in the corresponding folder.
 
 When run with `"dev": false`, it writes these files to an output dir (`dist/` + the source root by default), ready to serve using your favorite static file server.
 

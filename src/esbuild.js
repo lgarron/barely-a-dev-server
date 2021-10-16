@@ -18,7 +18,7 @@ export async function restartEsbuild(
     join(process.cwd(), entryRootPath),
     ".ts"
   );
-  console.log(`Starting esbuild with ${entryPoints.length} entry points.`);
+  console.log(`Starting esbuild with ${entryPoints.length} entry point(s).`);
   return (currentBuildResult = esbuild.build({
     target: "es2020",
     logLevel: "info",

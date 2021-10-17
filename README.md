@@ -44,8 +44,8 @@ console.log(a);
 - A thin wrapper around `esbuild`, which is very fast and robust.
   - Even outputs source maps!
 - Works just as well as fancy bundlers, if all your code is TypeScript.
-- No dependencies.
-- Less than 200 lines of source code (unminified).
+- No dependencies other than `esbuild`.
+- [Less than 200 lines](https://github.com/lgarron/barely-a-dev-server/blob/8a7f1f1538b590a13b0f6571f3b73b26c52dbf46/.github/workflows/test.yml#L38) of source code (unminified).
 
 # Why not `barely-a-dev-server`?
 

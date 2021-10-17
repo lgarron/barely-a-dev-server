@@ -41,6 +41,8 @@ console.log(a);
 
 # Why `barely-a-dev-server`?
 
+- A thin wrapper around `esbuild`, which is very fast and robust.
+  - Even outputs source maps!
 - Works just as well as fancy bundlers, if all your code is TypeScript.
 - No dependencies.
 - Less than 200 lines of source code (unminified).
@@ -50,6 +52,7 @@ console.log(a);
 - Hardcoded to assume that you are only using TypeScript for your source and ESM for your output.
 - No CLI.
   - If you don't have a build script, you can do this: `node -e 'import("barely-a-dev-server").then(s => s.barelyServe({entryRoot: "src"}))'`
+- No transformations (therefore no optimization) for non-script files.
 - No automatic URL opening, no live refresh.
 
 These are mostly because it would make the codebase significantly larger to support them properly.

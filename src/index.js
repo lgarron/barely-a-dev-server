@@ -1,6 +1,7 @@
-import { cp } from "fs/promises";
-import { join } from "path";
+import { copyFileSync, mkdirSync } from "fs";
+import { dirname, join } from "path";
 import { restartEsbuild } from "./esbuild.js";
+import { listFiles } from "./ls.js";
 import { CustomServer } from "./server.js";
 
 /*
@@ -42,11 +43,11 @@ export async function barelyServe(options) {
   if (!entryRoot) {
     throw new Error("Must specify `entryRoot`");
   }
-  debug ??= false;
-  dev ??= true;
-  esbuildOptions ??= {};
-  port ??= 1234;
-  outDir ??= join(dev ? "dist/dev" : "dist", entryRoot);
+  debug = debug ?? false;
+  dev = dev ?? true;
+  esbuildOptions = esbuildOptions ?? {};
+  port = port ?? 1234;
+  outDir = outDir ?? join(dev ? "dist/dev" : "dist", entryRoot);
 
   await restartEsbuild(entryRoot, outDir, dev, esbuildOptions);
   if (dev) {
@@ -56,7 +57,11 @@ export async function barelyServe(options) {
       debug,
     }).start();
   } else {
-    // TODO: filter out `.ts` if they don't work for source maps?
-    await cp(entryRoot, outDir, { recursive: true });
+    for (const relativePath of await listFiles(entryRoot, () => true)) {
+      mkdirSync(dirname(join(outDir, relativePath)), { recursive: true });
+      copyFileSync(join(entryRoot, relativePath), join(outDir, relativePath));
+    }
+    // TODO: Switch to this once `node` 16 is the default in Codespaces:
+    // await fsPromises.cp(entryRoot, outDir, { recursive: true });
   }
 }

@@ -1,21 +1,23 @@
 import { stat, readdir } from "fs/promises";
 import { join } from "path";
 
-export async function listFilesWithSuffix(folderPath, suffix) {
-  let childNames = await readdir(folderPath);
+export async function listFiles(folderPath, filter, relativePath) {
+  let childNames = await readdir(
+    relativePath ? join(folderPath, relativePath) : folderPath
+  );
 
   let ownMatches = [];
   let recursiveMatches = [];
-
   for (const childName of childNames) {
-    const childPath = join(folderPath, childName);
-    console.log({ childPath });
-    if ((await stat(childPath)).isDirectory()) {
+    const newRelativePath = relativePath
+      ? join(relativePath, childName)
+      : childName;
+    if ((await stat(join(folderPath, newRelativePath))).isDirectory()) {
       recursiveMatches = recursiveMatches.concat(
-        await listFilesWithSuffix(childPath, suffix)
+        await listFiles(folderPath, filter, newRelativePath)
       );
-    } else if (childPath.endsWith(suffix)) {
-      ownMatches.push(childPath);
+    } else if (filter(newRelativePath)) {
+      ownMatches.push(newRelativePath);
     }
   }
   return ownMatches.concat(recursiveMatches);

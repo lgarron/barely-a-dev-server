@@ -1,6 +1,6 @@
 import * as esbuild from "esbuild";
 import { join } from "path";
-import { listFilesWithSuffix } from "./ls.js";
+import { listFiles } from "./ls.js";
 
 let currentBuildResult = null;
 
@@ -14,10 +14,11 @@ export async function restartEsbuild(
     (await currentBuildResult).stop();
   }
 
-  const entryPoints = await listFilesWithSuffix(
-    join(process.cwd(), entryRootPath),
-    ".ts"
-  );
+  const absoluteRootPath = join(process.cwd(), entryRootPath);
+  const entryPoints = (
+    await listFiles(absoluteRootPath, (path) => path.endsWith(".ts"))
+  ).map((relativePath) => join(absoluteRootPath, relativePath));
+
   console.log(`Starting esbuild with ${entryPoints.length} entry point(s).`);
   return (currentBuildResult = esbuild.build({
     target: "es2020",

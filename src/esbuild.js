@@ -19,7 +19,9 @@ export async function restartEsbuild(
     await listFiles(absoluteRootPath, (path) => path.endsWith(".ts"))
   ).map((relativePath) => join(absoluteRootPath, relativePath));
 
-  console.log(`Starting esbuild with ${entryPoints.length} entry point(s).`);
+  console.log(
+    `[barely-a-dev-server] Starting esbuild with ${entryPoints.length} entry point(s).`
+  );
   return (currentBuildResult = esbuild.build({
     target: "es2020",
     logLevel: "info",

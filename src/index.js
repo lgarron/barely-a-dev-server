@@ -49,6 +49,20 @@ export async function barelyServe(options) {
   port = port ?? 1234;
   outDir = outDir ?? join(dev ? "dist/dev" : "dist", entryRoot);
 
+  if (!dev) {
+    // `esbuild` output files will take precedence over static files, so we copy
+    // them first and let `esbuild` override if needed.
+    console.log("\n[barely-a-dev-server] Copying static files...\n");
+    for (const relativePath of await listFiles(entryRoot, () => true)) {
+      console.log("  " + relativePath);
+      mkdirSync(dirname(join(outDir, relativePath)), { recursive: true });
+      copyFileSync(join(entryRoot, relativePath), join(outDir, relativePath));
+    }
+    console.log("");
+    // TODO: Switch to this once `node` 16 is the default in Codespaces:
+    // await fsPromises.cp(entryRoot, outDir, { recursive: true });
+  }
+
   await restartEsbuild(entryRoot, outDir, dev, esbuildOptions);
   if (dev) {
     new CustomServer({
@@ -56,12 +70,5 @@ export async function barelyServe(options) {
       port,
       debug,
     }).start();
-  } else {
-    for (const relativePath of await listFiles(entryRoot, () => true)) {
-      mkdirSync(dirname(join(outDir, relativePath)), { recursive: true });
-      copyFileSync(join(entryRoot, relativePath), join(outDir, relativePath));
-    }
-    // TODO: Switch to this once `node` 16 is the default in Codespaces:
-    // await fsPromises.cp(entryRoot, outDir, { recursive: true });
   }
 }

@@ -37,7 +37,7 @@ const a: number = 4;
 console.log(a);
 ```
 
-(Note that `src` must reference the `.js` file, not `.ts`. The example shows a hack: you can use `href` to store a reference to the `.ts` source, which works with e.g. "Follow link" in VSCode.)
+(Note that `src` must reference the `.js` file, not `.ts`. The example shows an ergonomic hack: you can use `href` to store a reference to the `.ts` source for e.g. "Follow link" in VSCode.)
 
 # Why `barely-a-dev-server`?
 

@@ -9,9 +9,10 @@ export async function listFilesWithSuffix(folderPath, suffix) {
 
   for (const childName of childNames) {
     const childPath = join(folderPath, childName);
+    console.log({ childPath });
     if ((await stat(childPath)).isDirectory()) {
       recursiveMatches = recursiveMatches.concat(
-        await listFilesWithSuffix(childPath, suffix),
+        await listFilesWithSuffix(childPath, suffix)
       );
     } else if (childPath.endsWith(suffix)) {
       ownMatches.push(childPath);

@@ -37,12 +37,12 @@ const a: number = 4;
 console.log(a);
 ```
 
-(Note that `src` must reference the `.js` file, not `.ts`. The example shows an ergonomic hack: you can use `href` to store a reference to the `.ts` source for e.g. "Follow link" in VSCode.)
+(Note that `src` must reference the generated `.js` file, not `.ts`. The example shows an ergonomic hack: you can use `href` to store a reference to the `.ts` source, so that you can e.g. "Follow link" in VSCode.)
 
 # Why `barely-a-dev-server`?
 
 - A thin wrapper around `esbuild`, which is very fast and robust.
-  - Even outputs source maps!
+  - Automatically outputs source maps!
 - Works just as well as fancy bundlers, if all your code is TypeScript.
 - No dependencies other than `esbuild`.
 - [Less than 200 lines](https://github.com/lgarron/barely-a-dev-server/blob/8a7f1f1538b590a13b0f6571f3b73b26c52dbf46/.github/workflows/test.yml#L38) of source code (unminified).
@@ -54,5 +54,7 @@ console.log(a);
   - If you don't have a build script, you can do this: `node -e 'import("barely-a-dev-server").then(s => s.barelyServe({entryRoot: "src"}))'`
 - No transformations (therefore no optimization) for non-script files.
 - No automatic URL opening, no live refresh.
+- Uses every `.ts` file under the `entryRoot` as an entry point. `esbuild` handles this very well, but this may result in significantly more output files than expected/needed.
+  - A simple workaround is to put as many "library" files as possible **outside** the entry root, leaving mostly entry files themselves **under** the entry root.
 
 These are mostly because it would make the codebase significantly larger to support them properly.

@@ -8,6 +8,12 @@ A thin, opinionated wrapper for `esbuild` as a `.ts` web server. Given an `entry
 
 When run with `"dev": false`, it writes these files to an output dir (`dist/` + the entry root by default), ready to serve using your favorite static file server.
 
+Install with:
+
+```shell
+npm install -D barely-a-dev-server
+```
+
 # Example
 
 ```js

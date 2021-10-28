@@ -33,12 +33,13 @@ export async function barelyServe(options) {
     // TODO: Switch to this once `node` 16 is the default in Codespaces:
     // await fsPromises.cp(entryRoot, outDir, { recursive: true });
   }
-  await restartEsbuild(entryRoot, outDir, dev, esbuildOptions);
+  const waitFor = restartEsbuild(entryRoot, outDir, dev, esbuildOptions);
   if (dev) {
     new CustomServer({
       rootPaths: [outDir, entryRoot],
       port,
       debug,
+      waitFor,
     }).start();
   }
 }

@@ -25,6 +25,7 @@ export class CustomServer {
     this.port = options?.port ?? 3333; // number
     this.rootPaths = options.rootPaths; // string[]
     this.debug = options?.debug ?? false;
+    this.waitFor = options?.waitFor ?? Promise.resolve(); // Promise<any>
   }
 
   start() {
@@ -39,6 +40,7 @@ export class CustomServer {
     }
 
     response.setHeader("Cache-Control", "no-store");
+    await this.waitFor;
 
     for (const rootPath of this.rootPaths) {
       const body = await this.tryReadFile(rootPath, normalizedPath);

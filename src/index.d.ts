@@ -7,4 +7,4 @@ export function barelyServe(options: {
   esbuildOptions?: BuildOptions;
   outDir?: string;
   port?: number;
-});
+}): Promise<void>;

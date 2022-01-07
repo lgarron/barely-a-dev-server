@@ -42,4 +42,6 @@ export async function barelyServe(options) {
       waitFor,
     }).start();
   }
+  await waitFor;
+  return;
 }

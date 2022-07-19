@@ -1,4 +1,4 @@
-import { copyFileSync, mkdirSync, rmdirSync, rmSync } from "fs";
+import { cp, rm } from "fs/promises";
 import { dirname, join } from "path";
 import { restartEsbuild } from "./esbuild.js";
 import { listFiles } from "./ls.js";
@@ -18,20 +18,10 @@ export async function barelyServe(options) {
   // TODO: Is there a succinct way to clear the `outDir` contents without
   // removing the `dir` itself (e.g. in case someone has the folder open in
   // Finder)?
-  rmSync(outDir, { recursive: true, force: true }); // Clear stale output files.
+  await rm(outDir, { recursive: true, force: true }); // Clear stale output files.
 
   if (!dev) {
-    // `esbuild` output files will take precedence over static files, so we copy
-    // them first and let `esbuild` override if needed.
-    console.log("\n[barely-a-dev-server] Copying static files...\n");
-    for (const relativePath of await listFiles(entryRoot, () => true)) {
-      console.log("  " + relativePath);
-      mkdirSync(dirname(join(outDir, relativePath)), { recursive: true });
-      copyFileSync(join(entryRoot, relativePath), join(outDir, relativePath));
-    }
-    console.log("");
-    // TODO: Switch to this once `node` 16 is the default in Codespaces:
-    // await fsPromises.cp(entryRoot, outDir, { recursive: true });
+    await cp(entryRoot, outDir, { recursive: true });
   }
   const waitFor = restartEsbuild(entryRoot, outDir, dev, esbuildOptions);
   if (dev) {

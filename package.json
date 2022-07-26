@@ -7,7 +7,7 @@
   "author": "Lucas Garron <code@garron.net>",
   "license": "(MIT OR GPL-3.0-or-later)",
   "repository": "github:lgarron/barely-a-dev-server",
-  "dependencies": {
+  "peerDependencies": {
     "esbuild": "^0.14.50"
   },
   "types": "./src/index.d.ts",

@@ -1,6 +1,6 @@
 import { cp, rm } from "fs/promises";
 import { dirname, join } from "path";
-import { restartEsbuild } from "./esbuild.js";
+import { restartEsbuild } from "./esbuild-wrapper.js";
 import { listFiles } from "./ls.js";
 import { CustomServer } from "./server.js";
 

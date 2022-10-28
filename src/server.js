@@ -26,11 +26,12 @@ export class CustomServer {
     this.rootPaths = options.rootPaths; // string[]
     this.debug = options?.debug ?? false;
     this.waitFor = options?.waitFor ?? Promise.resolve(); // Promise<any>
+    this.devDomain = options?.devDomain
   }
 
   start() {
     createServer(this.onRequest.bind(this)).listen(this.port);
-    console.log(`Server running at http://${options?.localhostSubdomain ?? "localhost"}:${this.port}/`);
+    console.log(`Server running at http://${this.devDomain ?? "localhost"}:${this.port}/`);
   }
 
   async onRequest(request, response) {

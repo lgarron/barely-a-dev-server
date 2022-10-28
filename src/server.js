@@ -30,7 +30,7 @@ export class CustomServer {
 
   start() {
     createServer(this.onRequest.bind(this)).listen(this.port);
-    console.log(`Server running at http://localhost:${this.port}/`);
+    console.log(`Server running at http://${options?.localhostSubdomain ?? "localhost"}:${this.port}/`);
   }
 
   async onRequest(request, response) {

@@ -55,6 +55,7 @@ console.log(a);
 
 # Why not `barely-a-dev-server`?
 
+- You can (almost) replace this with `esbuild`'s `--servedir` arg during dev, and `cp -R` for a build.
 - Hardcoded to assume that you are only using TypeScript for your source and ESM for your output.
 - No CLI.
   - If you don't have a build script, you can do this: `node -e 'import("barely-a-dev-server").then(s => s.barelyServe({entryRoot: "src"}))'`

@@ -24,3 +24,34 @@ else
   echo "❌ ${SOURCE_CHARACTER_COUNT} characters of source code (not less than ${SOURCE_CHARACTER_COUNT_LIMIT})!"
   false
 fi
+
+mkdir -p ./.temp
+npx esbuild \
+  --bundle --minify --format=esm --target=es2020 \
+  --external:http --external:fs/promises --external:os --external:path --external:tty --external:crypto --external:fs --external:child_process \
+   --external:esbuild \
+  --outdir=dist/size-test \
+  src/index.js
+MINIFIED_BYTE_COUNT=$(cat dist/size-test/index.js | wc -c)
+MINIFIED_BYTE_COUNT_LIMIT=3000
+if [ "${MINIFIED_BYTE_COUNT}" -lt "${MINIFIED_BYTE_COUNT_LIMIT}" ]
+then
+  echo "✅ ${MINIFIED_BYTE_COUNT} characters of minified source code (less than ${MINIFIED_BYTE_COUNT_LIMIT})."
+  true
+else
+  echo "❌ ${MINIFIED_BYTE_COUNT} characters of minified source code (not less than ${MINIFIED_BYTE_COUNT_LIMIT})!"
+  false
+fi
+
+rm -rf dist/size-test/index.js.gz
+gzip dist/size-test/index.js
+GZIPPED_BYTE_COUNT=$(cat dist/size-test/index.js.gz | wc -c)
+GZIPPED_BYTE_COUNT_LIMIT=1500
+if [ "${GZIPPED_BYTE_COUNT}" -lt "${GZIPPED_BYTE_COUNT_LIMIT}" ]
+then
+  echo "✅ ${GZIPPED_BYTE_COUNT} characters of gzipped source code (less than ${GZIPPED_BYTE_COUNT_LIMIT})."
+  true
+else
+  echo "❌ ${GZIPPED_BYTE_COUNT} characters of gzipped source code (not less than ${GZIPPED_BYTE_COUNT_LIMIT})!"
+  false
+fi

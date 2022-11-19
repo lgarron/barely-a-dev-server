@@ -16,5 +16,8 @@
       "import": "./src/index.js",
       "types": "./src/index.d.ts"
     }
+  },
+  "devDependencies": {
+    "rome": "^10.0.1"
   }
 }

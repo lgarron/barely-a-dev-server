@@ -13,6 +13,14 @@ test-build:
 test-budget:
 	script/test-budget.bash
 
+.PHONY: lint
+lint:
+	npx rome check src
+
+.PHONY: format
+format:
+	npx rome format --write src
+
 .PHONY: publish
 publish:
 	npm publish

@@ -28,7 +28,7 @@ fi
 mkdir -p ./.temp
 npx esbuild \
   --bundle --minify --format=esm --target=es2020 \
-  --external:http --external:fs/promises --external:os --external:path --external:tty --external:crypto --external:fs --external:child_process \
+  --external:http --external:node* \
    --external:esbuild \
   --outdir=dist/size-test \
   src/index.js

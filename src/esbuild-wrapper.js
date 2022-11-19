@@ -1,5 +1,5 @@
 import * as esbuild from "esbuild";
-import { join } from "path";
+import { join } from "node:path";
 import { listFiles } from "./ls.js";
 
 let currentBuildResult = null;

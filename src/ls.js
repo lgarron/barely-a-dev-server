@@ -1,5 +1,5 @@
-import { stat, readdir } from "fs/promises";
-import { join } from "path";
+import { stat, readdir } from "node:fs/promises";
+import { join } from "node:path";
 
 export async function listFiles(folderPath, filter, relativePath) {
   let childNames = await readdir(

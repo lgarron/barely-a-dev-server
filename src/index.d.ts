@@ -7,5 +7,5 @@ export function barelyServe(options: {
   esbuildOptions?: BuildOptions;
   outDir?: string;
   port?: number;
-  devDomain?: string
+  devDomain?: string;
 }): Promise<void>;

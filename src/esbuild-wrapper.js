@@ -8,7 +8,7 @@ export async function restartEsbuild(
   entryRootPath,
   outputRootPath,
   dev,
-  options
+  options,
 ) {
   if (currentBuildResult) {
     (await currentBuildResult).stop();
@@ -20,7 +20,7 @@ export async function restartEsbuild(
   ).map((relativePath) => join(absoluteRootPath, relativePath));
 
   console.log(
-    `[barely-a-dev-server] Starting esbuild with ${entryPoints.length} entry point(s).`
+    `[barely-a-dev-server] Starting esbuild with ${entryPoints.length} entry point(s).`,
   );
   return (currentBuildResult = esbuild.build({
     target: "es2020",

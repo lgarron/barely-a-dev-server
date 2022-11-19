@@ -5,7 +5,8 @@ import { listFiles } from "./ls.js";
 import { CustomServer } from "./server.js";
 
 export async function barelyServe(options) {
-  let { debug, dev, entryRoot, esbuildOptions, outDir, port, type, devDomain } = options;
+  let { debug, dev, entryRoot, esbuildOptions, outDir, port, type, devDomain } =
+    options;
   if (!entryRoot) {
     throw new Error("Must specify `entryRoot`");
   }

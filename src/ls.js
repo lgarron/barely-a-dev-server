@@ -3,7 +3,7 @@ import { join } from "path";
 
 export async function listFiles(folderPath, filter, relativePath) {
   let childNames = await readdir(
-    relativePath ? join(folderPath, relativePath) : folderPath
+    relativePath ? join(folderPath, relativePath) : folderPath,
   );
 
   let ownMatches = [];
@@ -14,7 +14,7 @@ export async function listFiles(folderPath, filter, relativePath) {
       : childName;
     if ((await stat(join(folderPath, newRelativePath))).isDirectory()) {
       recursiveMatches = recursiveMatches.concat(
-        await listFiles(folderPath, filter, newRelativePath)
+        await listFiles(folderPath, filter, newRelativePath),
       );
     } else if (filter(newRelativePath)) {
       ownMatches.push(newRelativePath);

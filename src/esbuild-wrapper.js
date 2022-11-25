@@ -25,7 +25,7 @@ export async function restartEsbuild(
   return (currentBuildResult = esbuild.build({
     target: "es2020",
     logLevel: "info",
-    minify: true, // TODO: `!dev`?
+    minify: !dev,
     sourcemap: true,
     ...options,
     format: "esm",

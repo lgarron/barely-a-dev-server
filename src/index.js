@@ -35,5 +35,4 @@ export async function barelyServe(options) {
     }).start();
   }
   await waitFor;
-  return;
 }

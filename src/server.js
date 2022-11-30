@@ -31,9 +31,11 @@ export class CustomServer {
 
   start() {
     createServer(this.onRequest.bind(this)).listen(this.port);
-    console.log(
-      `Server running at http://${this.devDomain ?? "localhost"}:${this.port}/`,
-    );
+    const message = `🌐 Server running at ${this.devDomain ?? "localhost"}:${
+      this.port
+    }/`;
+    const dashes = new Array(message.length + 1).fill("-").join("");
+    console.log(dashes + "\n" + message + "\n" + dashes);
   }
 
   async onRequest(request, response) {

@@ -35,7 +35,7 @@ export class CustomServer {
       this.port
     }/`;
     const dashes = new Array(message.length + 1).fill("-").join("");
-    console.log(dashes + "\n" + message + "\n" + dashes);
+    console.log([dashes, message, dashes].join("\n"));
   }
 
   async onRequest(request, response) {

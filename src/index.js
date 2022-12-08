@@ -1,7 +1,6 @@
 import { cp, rm } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { restartEsbuild } from "./esbuild-wrapper.js";
-import { listFiles } from "./ls.js";
 import { CustomServer } from "./server.js";
 
 export async function barelyServe(options) {

@@ -8,8 +8,6 @@ export async function restartEsbuild(options) {
   if (currentBuildResult) {
     (await currentBuildResult).stop();
   }
-
-  console.log(options);
   const absoluteRootPath = join(process.cwd(), options.entryRoot);
   const entryPoints = (
     await listFiles(absoluteRootPath, (path) => path.endsWith(".ts"))

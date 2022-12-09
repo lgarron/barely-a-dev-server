@@ -4,17 +4,13 @@ import { listFiles } from "./ls.js";
 
 let currentBuildResult = null;
 
-export async function restartEsbuild(
-  entryRootPath,
-  outputRootPath,
-  dev,
-  options,
-) {
+export async function restartEsbuild(options) {
   if (currentBuildResult) {
     (await currentBuildResult).stop();
   }
 
-  const absoluteRootPath = join(process.cwd(), entryRootPath);
+  console.log(options);
+  const absoluteRootPath = join(process.cwd(), options.entryRoot);
   const entryPoints = (
     await listFiles(absoluteRootPath, (path) => path.endsWith(".ts"))
   ).map((relativePath) => join(absoluteRootPath, relativePath));
@@ -25,14 +21,14 @@ export async function restartEsbuild(
   return (currentBuildResult = esbuild.build({
     target: "es2020",
     logLevel: "info",
-    minify: !dev,
+    minify: !options.dev,
     sourcemap: true,
-    ...options,
+    ...options.esbuildOptions,
     format: "esm",
     entryPoints,
-    outdir: outputRootPath,
+    outdir: options.outDir,
     bundle: true,
     splitting: true,
-    watch: dev,
+    watch: options.dev,
   }));
 }

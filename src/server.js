@@ -22,18 +22,14 @@ const mimeTypes = {
 
 export class CustomServer {
   constructor(options) {
-    this.port = options?.port ?? 3333; // number
-    this.rootPaths = options.rootPaths; // string[]
-    this.debug = options?.debug ?? false;
-    this.waitFor = options?.waitFor ?? Promise.resolve(); // Promise<any>
-    this.devDomain = options?.devDomain;
+    this.options = options;
   }
 
   start() {
-    createServer(this.onRequest.bind(this)).listen(this.port);
+    createServer(this.onRequest.bind(this)).listen(this.options.port);
     const message = `🌐 Server running at http://${
-      this.devDomain ?? "localhost"
-    }:${this.port}/`;
+      this.options.devDomain ?? "localhost"
+    }:${this.options.port}/`;
     const dashes = new Array(message.length + 1).fill("-").join("");
     console.log([dashes, message, dashes].join("\n"));
   }
@@ -45,12 +41,12 @@ export class CustomServer {
     }
 
     response.setHeader("Cache-Control", "no-store");
-    await this.waitFor;
+    await this.options.waitFor;
 
-    for (const rootPath of this.rootPaths) {
+    for (const rootPath of [this.options.outDir, this.options.entryRoot]) {
       const body = await this.tryReadFile(rootPath, normalizedPath);
       if (body !== null) {
-        if (this.debug || normalizedPath.endsWith(".html")) {
+        if (this.options.debug || normalizedPath.endsWith(".html")) {
           console.log(`200 ${request.url} (from ${rootPath})`);
         }
         response.writeHead(200, {

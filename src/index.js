@@ -15,6 +15,7 @@ export async function barelyServe(inputOptions) {
   options.outDir =
     options.outDir ??
     join(options.dev ? "dist/dev" : "dist", options.entryRoot);
+  options.cors = options.cors ?? false;
 
   // TODO: Is there a succinct way to clear the `outDir` contents without
   // removing the `dir` itself (e.g. in case someone has the folder open in

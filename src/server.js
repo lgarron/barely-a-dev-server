@@ -42,6 +42,7 @@ export class CustomServer {
 
     response.setHeader("Cache-Control", "no-store");
     await this.options.waitFor;
+    await this.options.setHeaders?.(request, response);
 
     for (const rootPath of [this.options.outDir, this.options.entryRoot]) {
       const body = await this.tryReadFile(rootPath, normalizedPath);

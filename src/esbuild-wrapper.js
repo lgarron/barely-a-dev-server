@@ -21,12 +21,12 @@ export async function restartEsbuild(options) {
     logLevel: "info",
     minify: !options.dev,
     sourcemap: true,
-    ...options.esbuildOptions,
     format: "esm",
-    entryPoints,
-    outdir: options.outDir,
     bundle: true,
     splitting: true,
+    ...options.esbuildOptions,
+    entryPoints,
+    outdir: options.outDir,
     watch: options.dev,
   }));
 }

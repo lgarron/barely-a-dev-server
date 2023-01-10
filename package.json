@@ -1,6 +1,6 @@
 {
   "name": "barely-a-dev-server",
-  "version": "0.4.8",
+  "version": "0.4.9",
   "type": "module",
   "description": "",
   "keywords": [],
@@ -22,5 +22,8 @@
   },
   "scripts": {
     "prepublish": "make clean && make test"
-  }
+  },
+  "files": [
+    "./src/"
+  ]
 }

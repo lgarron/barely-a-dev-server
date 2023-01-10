@@ -19,5 +19,8 @@
   },
   "devDependencies": {
     "rome": "^11.0.0"
+  },
+  "scripts": {
+    "prepublish": "make clean && make test"
   }
 }

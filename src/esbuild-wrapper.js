@@ -26,6 +26,7 @@ export async function restartEsbuild(options) {
     splitting: true,
     ...options.esbuildOptions,
     entryPoints,
+    outbase: options.entryRoot,
     outdir: options.outDir,
     watch: options.dev,
   }));

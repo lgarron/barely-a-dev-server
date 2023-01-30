@@ -8,7 +8,7 @@
   "license": "(MIT OR GPL-3.0-or-later)",
   "repository": "github:lgarron/barely-a-dev-server",
   "peerDependencies": {
-    "esbuild": "^0.17.5"
+    "esbuild": "0.16.17"
   },
   "types": "./src/index.d.ts",
   "exports": {

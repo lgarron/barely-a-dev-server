@@ -19,7 +19,7 @@ export async function restartEsbuild(options) {
   console.log(
     `[barely-a-dev-server] Starting esbuild with ${entryPoints.length} entry point(s).`,
   );
-  return (currentBuildResult = esbuild.build({
+  const buildContext = await esbuild.context({
     target: "es2020",
     logLevel: "info",
     minify: !options.dev,
@@ -29,8 +29,10 @@ export async function restartEsbuild(options) {
     splitting: true,
     ...options.esbuildOptions,
     entryPoints,
-    outbase: options.entryRoot,
     outdir: options.outDir,
-    watch: options.dev,
-  }));
+  });
+  if (options.dev) {
+    buildContext.watch();
+  }
+  return buildContext;
 }

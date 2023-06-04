@@ -33,6 +33,8 @@ export async function restartEsbuild(options) {
   });
   if (options.dev) {
     buildContext.watch();
+  } else {
+    buildContext.rebuild();
   }
   return buildContext;
 }

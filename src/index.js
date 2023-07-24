@@ -4,7 +4,7 @@ import { restartEsbuild } from "./esbuild-wrapper.js";
 import { CustomServer } from "./server.js";
 
 export async function barelyServe(inputOptions) {
-  let { ...options } = inputOptions;
+  const { ...options } = inputOptions;
   if (!options.entryRoot) {
     throw new Error("Must specify `entryRoot`");
   }

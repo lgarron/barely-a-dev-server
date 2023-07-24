@@ -2,11 +2,11 @@ import { stat, readdir } from "node:fs/promises";
 import { join } from "node:path";
 
 export async function listFiles(folderPath, filter, relativePath) {
-  let childNames = await readdir(
+  const childNames = await readdir(
     relativePath ? join(folderPath, relativePath) : folderPath,
   );
 
-  let ownMatches = [];
+  const ownMatches = [];
   let recursiveMatches = [];
   for (const childName of childNames) {
     const newRelativePath = relativePath

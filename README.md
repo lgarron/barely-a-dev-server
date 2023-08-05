@@ -1,6 +1,6 @@
 # `barely-a-dev-server`
 
-A thin, opinionated wrapper for `esbuild` as a `.ts` web server. Given an `entryRoot` folder, it:
+A thin, opinionated wrapper for [`esbuild`](https://github.com/evanw/esbuild) as a `.ts` web server. Given an `entryRoot` folder, it:
 
 - finds all `.ts` files under `entryRoot` and uses them as entry files to run `esbuild` in `watch` mode, and
 - serves the built `.js` files together with a fallback to `entryRoot` for static files.

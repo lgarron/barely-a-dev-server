@@ -1,4 +1,4 @@
-import { cp, rm } from "node:fs/promises";
+import { rm } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { restartEsbuild } from "./esbuild-wrapper.js";
 import { CustomServer } from "./server.js";
@@ -23,7 +23,15 @@ export async function barelyServe(inputOptions) {
   await rm(options.outDir, { recursive: true, force: true }); // Clear stale output files.
 
   if (!options.dev) {
-    await cp(options.entryRoot, options.outDir, { recursive: true });
+    const { cp } = await import("node:fs/promises");
+    if (cp) {
+      await cp(options.entryRoot, options.outDir, { recursive: true });
+    } else {
+      console.warn(
+        "`node:fs/promises` does not have `cp`. Using a temporary workaround for `bun`.",
+      );
+      globalThis.Bun.spawnSync(["cp", "-R", options.entryRoot, options.outDir]);
+    }
   }
   const waitFor = restartEsbuild(options);
   if (options.dev) {

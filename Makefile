@@ -22,7 +22,7 @@ format:
 	npx rome format --write src
 
 .PHONY: publish
-publish:
+publish: test
 	npm publish
 
 .PHONY: clean

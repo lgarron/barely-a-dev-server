@@ -1,21 +1,14 @@
 import * as esbuild from "esbuild";
 import { join } from "node:path";
-import { listFiles } from "./ls.js";
 
 let currentBuildContext;
 
 export async function restartEsbuild(options) {
   await currentBuildContext?.stop();
   const absoluteRootPath = join(process.cwd(), options.entryRoot);
-  const entryPoints = (
-    await listFiles(
-      absoluteRootPath,
-      (path) => path.endsWith(".ts") && !path.endsWith(".d.ts"),
-    )
-  ).map((relativePath) => join(absoluteRootPath, relativePath));
 
   console.log(
-    `[barely-a-dev-server] Starting esbuild with ${entryPoints.length} entry point(s).`,
+    `[barely-a-dev-server] Starting esbuild with entry root: ${options.entryRoot}`,
   );
   const esbuildOptions = {
     target: "es2020",
@@ -26,7 +19,7 @@ export async function restartEsbuild(options) {
     bundle: true,
     splitting: true,
     ...options.esbuildOptions,
-    entryPoints,
+    entryPoints: [join(options.entryRoot, "**", "*.ts")],
     outdir: options.outDir,
   };
   if (options.dev) {

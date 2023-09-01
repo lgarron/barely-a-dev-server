@@ -1,5 +1,5 @@
-import * as esbuild from "esbuild";
 import { join } from "node:path";
+import * as esbuild from "esbuild";
 
 let currentBuildContext;
 

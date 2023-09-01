@@ -15,11 +15,11 @@ test-budget:
 
 .PHONY: lint
 lint:
-	npx rome check src
+	npx @biomejs/biome check src
 
 .PHONY: format
 format:
-	npx rome format --write src
+	npx @biomejs/biome format --write src
 
 .PHONY: publish
 publish: test

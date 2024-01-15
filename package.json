@@ -7,6 +7,9 @@
   "author": "Lucas Garron <code@garron.net>",
   "license": "(MIT OR GPL-3.0-or-later)",
   "repository": "github:lgarron/barely-a-dev-server",
+  "engines": {
+    "node": ">=19"
+  },
   "peerDependencies": {
     "esbuild": "^0.19.0"
   },
@@ -20,9 +23,7 @@
   "scripts": {
     "prepublish": "make clean && make test"
   },
-  "files": [
-    "./src/"
-  ],
+  "files": ["./src/"],
   "devDependencies": {
     "@biomejs/biome": "^1.0.0"
   }

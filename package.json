@@ -1,6 +1,6 @@
 {
   "name": "barely-a-dev-server",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "type": "module",
   "description": "",
   "keywords": [],
@@ -24,7 +24,9 @@
   "scripts": {
     "prepublish": "make clean && make test"
   },
-  "files": ["./src/"],
+  "files": [
+    "./src/"
+  ],
   "devDependencies": {
     "@biomejs/biome": "^1.0.0"
   }

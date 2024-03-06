@@ -12,7 +12,7 @@
     "bun": ">=1.0.30"
   },
   "peerDependencies": {
-    "esbuild": "^0.19.0"
+    "esbuild": "^0.20.1"
   },
   "types": "./src/index.d.ts",
   "exports": {

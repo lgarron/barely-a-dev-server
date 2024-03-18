@@ -14,21 +14,24 @@ export async function restartEsbuild(options) {
     target: "es2020",
     logLevel: "info",
     minify: !options.dev,
-    sourcemap: true,
+    // sourcemap: true,
     format: "esm",
     bundle: true,
     splitting: true,
     ...options.esbuildOptions,
     entryPoints: [join(options.entryRoot, "**", "*.ts")],
-    outdir: options.outDir,
   };
   if (options.dev) {
+    esbuildOptions.outdir = options.entryRoot;
     currentBuildContext = await esbuild.context(esbuildOptions);
-    currentBuildContext.watch();
-    currentBuildContext.serve({
-      servedir: options.entryRoot,
-    });
+    await Promise.all([
+      // currentBuildContext.watch(),
+      currentBuildContext.serve({
+        servedir: options.entryRoot,
+      }),
+    ]);
   } else {
+    esbuildOptions.outdir = options.outDir;
     await esbuild.build(esbuildOptions);
   }
 }

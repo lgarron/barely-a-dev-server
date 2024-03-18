@@ -23,8 +23,11 @@ export async function restartEsbuild(options) {
     outdir: options.outDir,
   };
   if (options.dev) {
-    currentBuildContext = esbuild.context(esbuildOptions);
-    (await currentBuildContext).watch();
+    currentBuildContext = await esbuild.context(esbuildOptions);
+    currentBuildContext.watch();
+    currentBuildContext.serve({
+      servedir: options.entryRoot,
+    });
   } else {
     await esbuild.build(esbuildOptions);
   }

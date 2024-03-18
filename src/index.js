@@ -24,8 +24,5 @@ export async function barelyServe(inputOptions) {
     await cp(options.entryRoot, options.outDir, { recursive: true });
   }
   const waitFor = restartEsbuild(options);
-  if (options.dev) {
-    new CustomServer({ ...options, waitFor }).start();
-  }
   await waitFor;
 }

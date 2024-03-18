@@ -8,14 +8,12 @@ export async function barelyServe(inputOptions) {
   if (!options.entryRoot) {
     throw new Error("Must specify `entryRoot`");
   }
-  options.debug = options.debug ?? false;
-  options.dev = options.dev ?? true;
-  options.esbuildOptions = options.esbuildOptions ?? {};
-  options.port = options.port ?? 1234;
-  options.outDir =
-    options.outDir ??
-    join(options.dev ? "dist/dev" : "dist", options.entryRoot);
-  options.cors = options.cors ?? false;
+  options.debug ??= false;
+  options.dev ??= true;
+  options.esbuildOptions ??= {};
+  options.port ??= 1234;
+  options.outDir ??= join(options.dev ? "dist/dev" : "dist", options.entryRoot);
+  options.cors ??= false;
 
   // TODO: Is there a succinct way to clear the `outDir` contents without
   // removing the `dir` itself (e.g. in case someone has the folder open in

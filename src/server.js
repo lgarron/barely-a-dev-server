@@ -18,6 +18,7 @@ const mimeTypes = {
   ".eot": "application/vnd.ms-fontobject",
   ".otf": "application/font-otf",
   ".wasm": "application/wasm",
+  ".jxl": "image/jxl",
 };
 
 export class CustomServer {

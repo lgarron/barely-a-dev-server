@@ -19,6 +19,7 @@ const mimeTypes = {
   ".otf": "application/font-otf",
   ".wasm": "application/wasm",
   ".jxl": "image/jxl",
+  ".avif": "image/avif",
 };
 
 export class CustomServer {

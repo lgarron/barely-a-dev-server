@@ -12,7 +12,7 @@
     "bun": ">=1.0.30"
   },
   "peerDependencies": {
-    "esbuild": "^0.20.1"
+    "esbuild": "^0.23.0"
   },
   "types": "./src/index.d.ts",
   "exports": {
@@ -28,6 +28,6 @@
     "./src/"
   ],
   "devDependencies": {
-    "@biomejs/biome": "^1.0.0"
+    "@biomejs/biome": "^1.8.3"
   }
 }

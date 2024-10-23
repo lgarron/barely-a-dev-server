@@ -2,6 +2,10 @@
 dev:
 	node test/index.js
 
+.PHONY: setup
+setup:
+	bun install
+
 .PHONY: test
 test: test-build test-budget
 

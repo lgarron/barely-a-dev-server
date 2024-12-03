@@ -11,7 +11,7 @@ export async function restartEsbuild(options) {
     `[barely-a-dev-server] Starting esbuild with entry root: ${options.entryRoot}`,
   );
   const esbuildOptions = {
-    target: "es2020",
+    target: "es2022",
     logLevel: "info",
     minify: !options.dev,
     sourcemap: true,

@@ -8,5 +8,6 @@ export function barelyServe(options: {
   outDir?: string;
   port?: number;
   devDomain?: string;
+  bundleCSS?: boolean;
   setHeaders?: (request: Request, response: Response) => Promise<void>;
 }): Promise<void>;

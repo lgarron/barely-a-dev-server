@@ -10,6 +10,10 @@ export async function restartEsbuild(options) {
   console.log(
     `[barely-a-dev-server] Starting esbuild with entry root: ${options.entryRoot}`,
   );
+  const entryPoints = [join(options.entryRoot, "**", "*.ts")];
+  if (options.bundleCSS) {
+    entryPoints.push(join(options.entryRoot, "**", "*.css"));
+  }
   const esbuildOptions = {
     target: "es2022",
     logLevel: "info",
@@ -19,7 +23,7 @@ export async function restartEsbuild(options) {
     bundle: true,
     splitting: true,
     ...options.esbuildOptions,
-    entryPoints: [join(options.entryRoot, "**", "*.ts")],
+    entryPoints,
     outdir: options.outDir,
   };
   if (options.dev) {

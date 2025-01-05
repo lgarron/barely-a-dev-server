@@ -1,12 +1,10 @@
 {
+  "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+  "files": {
+    "ignore": ["./dist", "./package.json", "./target"]
+  },
   "formatter": {
     "indentStyle": "space",
-    "indentSize": 2
-  },
-  "linter": {
-    "enabled": true,
-    "rules": {
-      "recommended": true
-    }
+    "indentWidth": 2
   }
 }

@@ -22,12 +22,10 @@
     }
   },
   "scripts": {
-    "prepublish": "make clean && make test"
+    "prepublishOnly": "make prepublishOnly"
   },
-  "files": [
-    "./src/"
-  ],
+  "files": ["./src/"],
   "devDependencies": {
-    "@biomejs/biome": "^1.8.3"
+    "@biomejs/biome": "^1.9.4"
   }
 }

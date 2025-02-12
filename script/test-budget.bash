@@ -25,7 +25,6 @@ else
   false
 fi
 
-mkdir -p ./.temp
 npx esbuild \
   --bundle --minify --format=esm --target=es2020 \
   --external:http --external:node* \

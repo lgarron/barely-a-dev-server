@@ -4,7 +4,7 @@ dev: setup
 
 .PHONY: setup
 setup:
-	bun install --no-save
+	bun install --frozen-lockfile
 
 .PHONY: test
 test: test-build test-budget
@@ -32,7 +32,10 @@ publish:
 .PHONY: prepublishOnly
 prepublishOnly: test
 
-
 .PHONY: clean
 clean:
-	rm -rf ./.temp ./dist
+	rm -rf ./dist
+
+.PHONY: reset
+reset: clean
+	rm -rf ./node_modules

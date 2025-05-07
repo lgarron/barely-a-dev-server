@@ -1,4 +1,5 @@
 import { join } from "node:path";
+import { es2022App } from "@cubing/dev-config/esbuild/es2022";
 import * as esbuild from "esbuild";
 
 let currentBuildContext;
@@ -15,13 +16,8 @@ export async function restartEsbuild(options) {
     entryPoints.push(join(options.entryRoot, "**", "*.css"));
   }
   const esbuildOptions = {
-    target: "es2022",
+    ...es2022App({ dev: options.dev }),
     logLevel: "info",
-    minify: !options.dev,
-    sourcemap: true,
-    format: "esm",
-    bundle: true,
-    splitting: true,
     ...options.esbuildOptions,
     entryPoints,
     outdir: options.outDir,

@@ -7,6 +7,7 @@ const mimeTypes = {
   ".css": "text/css",
   ".eot": "application/vnd.ms-fontobject",
   ".gif": "image/gif",
+  ".htm": "text/html",
   ".html": "text/html",
   ".jpg": "image/jpg",
   ".js": "text/javascript",

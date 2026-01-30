@@ -5,7 +5,7 @@
     "": {
       "name": "barely-a-dev-server",
       "dependencies": {
-        "@cubing/dev-config": "^0.3.1",
+        "@cubing/dev-config": ">=0.3.1",
       },
       "devDependencies": {
         "@biomejs/biome": "^1.9.4",

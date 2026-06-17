@@ -2,6 +2,9 @@
 dev: setup
 	node test/index.js
 
+.PHONY: check
+check: test lint
+
 .PHONY: setup
 setup:
 	bun install --frozen-lockfile
@@ -19,11 +22,11 @@ test-budget: setup
 
 .PHONY: lint
 lint: setup
-	npx @biomejs/biome check src
+	bun x -- bun-dx --package @biomejs/biome biome -- check
 
 .PHONY: format
 format: setup
-	npx @biomejs/biome format --write src
+	bun x -- bun-dx --package @biomejs/biome biome -- check --write
 
 .PHONY: publish
 publish:
@@ -32,10 +35,12 @@ publish:
 .PHONY: prepublishOnly
 prepublishOnly: test
 
+RM_RF = bun -e 'process.argv.slice(1).map(p => process.getBuiltinModule("node:fs").rmSync(p, {recursive: true, force: true, maxRetries: 5}))' --
+
 .PHONY: clean
 clean:
-	rm -rf ./dist
+	${RM_RF} ./dist/
 
 .PHONY: reset
 reset: clean
-	rm -rf ./node_modules
+	${RM_RF} ./node_modules/

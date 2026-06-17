@@ -6,7 +6,6 @@ let currentBuildContext;
 
 export async function restartEsbuild(options) {
   await currentBuildContext?.stop();
-  const absoluteRootPath = join(process.cwd(), options.entryRoot);
 
   console.log(
     `[barely-a-dev-server] Starting esbuild with entry root: ${options.entryRoot}`,

@@ -1,5 +1,5 @@
 import { barelyServe } from "../src/index.js";
 
-barelyServe({
+await barelyServe({
   entryRoot: "./test/root/",
 });

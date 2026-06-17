@@ -71,7 +71,7 @@ export class CustomServer {
 
     try {
       return await readFile(filePath);
-    } catch (e) {
+    } catch {
       return null;
     }
   }

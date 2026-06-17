@@ -28,7 +28,7 @@
     "./src/"
   ],
   "devDependencies": {
-    "@biomejs/biome": "^1.9.4"
+    "@biomejs/biome": "^2.5.0"
   },
   "dependencies": {
     "@cubing/dev-config": ">=0.3.1"

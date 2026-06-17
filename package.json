@@ -12,7 +12,7 @@
     "bun": ">=1.0.30"
   },
   "peerDependencies": {
-    "esbuild": ">=0.25.0"
+    "esbuild": ">=0.28.1"
   },
   "types": "./src/index.d.ts",
   "exports": {
@@ -31,6 +31,6 @@
     "@biomejs/biome": "^2.5.0"
   },
   "dependencies": {
-    "@cubing/dev-config": ">=0.3.1"
+    "@cubing/dev-config": ">=0.10.1"
   }
 }

@@ -1,6 +1,6 @@
 .PHONY: dev
 dev: setup
-	node test/index.js
+	node -- ./test/index.js
 
 .PHONY: check
 check: test lint
@@ -14,7 +14,7 @@ test: test-build test-budget
 
 .PHONY: test-build
 test-build: setup
-	node test/build.js
+	node -- ./test/build.js
 
 .PHONY: test-budget
 test-budget: setup
@@ -33,7 +33,7 @@ publish:
 	npm publish
 
 .PHONY: prepublishOnly
-prepublishOnly: test
+prepublishOnly: test check
 
 RM_RF = bun -e 'process.argv.slice(1).map(p => process.getBuiltinModule("node:fs").rmSync(p, {recursive: true, force: true, maxRetries: 5}))' --
 

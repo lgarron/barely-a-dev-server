@@ -20,7 +20,7 @@ export async function restartEsbuild(options) {
     ...options.esbuildOptions,
     entryPoints,
     outdir: options.outDir,
-    outbase: options.entryRoot
+    outbase: options.entryRoot,
   };
   if (options.dev) {
     currentBuildContext = esbuild.context(esbuildOptions);
